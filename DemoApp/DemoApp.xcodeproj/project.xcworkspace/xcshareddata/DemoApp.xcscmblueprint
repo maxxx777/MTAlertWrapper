@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "672DC9DDF8BAF2210F4A15A1A02A97ED9FD53855",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "672DC9DDF8BAF2210F4A15A1A02A97ED9FD53855" : 0,
+    "9C3DF37F3FBBF30BD3A315212397547FBF63F459" : 0,
+    "7B3173A9A8711E26B2B7E8EB32A82862FE9BF726" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "59C30C71-A488-42A9-9239-1893AC5243F4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "672DC9DDF8BAF2210F4A15A1A02A97ED9FD53855" : "MTAlertWrapper\/",
+    "9C3DF37F3FBBF30BD3A315212397547FBF63F459" : "MTAlertViewWrapper\/",
+    "7B3173A9A8711E26B2B7E8EB32A82862FE9BF726" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "DemoApp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "DemoApp\/DemoApp.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/maxxx777\/MTAlertWrapper",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "672DC9DDF8BAF2210F4A15A1A02A97ED9FD53855"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/alexthec0d3r\/scheduleapp-iphone-cloned.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7B3173A9A8711E26B2B7E8EB32A82862FE9BF726"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/maxxx777\/MTAlertViewWrapper",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9C3DF37F3FBBF30BD3A315212397547FBF63F459"
+    }
+  ]
+}
