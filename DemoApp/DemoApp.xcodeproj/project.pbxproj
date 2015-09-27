@@ -16,6 +16,7 @@
 		755E0D5C1BB31A2900288EDF /* DemoAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E0D5B1BB31A2900288EDF /* DemoAppTests.m */; };
 		755E0D671BB31A2900288EDF /* DemoAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E0D661BB31A2900288EDF /* DemoAppUITests.m */; };
 		755E0D851BB31EC400288EDF /* MTAlertWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E0D821BB31EC400288EDF /* MTAlertWrapper.m */; settings = {ASSET_TAGS = (); }; };
+		75F7D2A51BB80AAF009D7C01 /* UIDevice+SystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 75F7D2A41BB80AAF009D7C01 /* UIDevice+SystemVersion.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		755E0D821BB31EC400288EDF /* MTAlertWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAlertWrapper.m; sourceTree = "<group>"; };
 		755E0D831BB31EC400288EDF /* MTAlertWrapperConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAlertWrapperConstants.h; sourceTree = "<group>"; };
 		755E0D841BB31EC400288EDF /* MTAlertWrapperInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAlertWrapperInterface.h; sourceTree = "<group>"; };
+		75F7D2A31BB80AAF009D7C01 /* UIDevice+SystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+SystemVersion.h"; sourceTree = "<group>"; };
+		75F7D2A41BB80AAF009D7C01 /* UIDevice+SystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+SystemVersion.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,7 @@
 		755E0D801BB31EC400288EDF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				75F7D2A21BB80AAF009D7C01 /* UIDevice_SystemVersion */,
 				755E0D811BB31EC400288EDF /* MTAlertWrapper.h */,
 				755E0D821BB31EC400288EDF /* MTAlertWrapper.m */,
 				755E0D831BB31EC400288EDF /* MTAlertWrapperConstants.h */,
@@ -156,6 +160,15 @@
 			);
 			name = Classes;
 			path = ../../Classes;
+			sourceTree = "<group>";
+		};
+		75F7D2A21BB80AAF009D7C01 /* UIDevice_SystemVersion */ = {
+			isa = PBXGroup;
+			children = (
+				75F7D2A31BB80AAF009D7C01 /* UIDevice+SystemVersion.h */,
+				75F7D2A41BB80AAF009D7C01 /* UIDevice+SystemVersion.m */,
+			);
+			path = UIDevice_SystemVersion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +238,7 @@
 				TargetAttributes = {
 					755E0D3D1BB31A2900288EDF = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = BJN9J8JUPL;
 					};
 					755E0D561BB31A2900288EDF = {
 						CreatedOnToolsVersion = 7.0;
@@ -291,6 +305,7 @@
 				755E0D491BB31A2900288EDF /* ViewController.m in Sources */,
 				755E0D851BB31EC400288EDF /* MTAlertWrapper.m in Sources */,
 				755E0D461BB31A2900288EDF /* AppDelegate.m in Sources */,
+				75F7D2A51BB80AAF009D7C01 /* UIDevice+SystemVersion.m in Sources */,
 				755E0D431BB31A2900288EDF /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,11 +447,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: 777.maxxx@gmail.com (FL7GUB5G25)";
 				INFOPLIST_FILE = DemoApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maxxx.DemoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e8080be8-cb3c-4c18-b3ac-235986696168";
 			};
 			name = Debug;
 		};
@@ -444,11 +461,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: 777.maxxx@gmail.com (FL7GUB5G25)";
 				INFOPLIST_FILE = DemoApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.maxxx.DemoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e8080be8-cb3c-4c18-b3ac-235986696168";
 			};
 			name = Release;
 		};

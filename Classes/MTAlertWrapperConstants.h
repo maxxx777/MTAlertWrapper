@@ -7,8 +7,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-typedef void (^MTAlertWrapperDidDismissCompletionBlock)(NSInteger buttonIndex, NSString *text);
-typedef void (^MTAlertWrapperClickedCompletionBlock)(NSInteger buttonIndex, NSString *text);
+typedef NS_ENUM(NSUInteger, MTAlertWrapperTextType) {
+    MTAlertWrapperTextTypePlain = 1,
+    MTAlertWrapperTextTypeInput
+};
 
-static const NSUInteger MTAlertWrapperPlainTextType          = 1;
-static const NSUInteger MTAlertWrapperInputTextType          = 2;
+typedef void (^MTAlertWrapperDidDismissCompletionBlock)(NSInteger buttonIndex, NSString *actionTitle, NSString *inputText);
+typedef void (^MTAlertWrapperClickedCompletionBlock)(NSInteger buttonIndex, NSString *actionTitle, NSString *inputText);

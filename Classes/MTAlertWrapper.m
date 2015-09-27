@@ -5,6 +5,7 @@
 //
 
 #import "MTAlertWrapper.h"
+#import "UIDevice+SystemVersion.h"
 
 @interface MTAlertWrapper ()
 
@@ -22,31 +23,87 @@
 
 #pragma mark - ETAlertViewWrapperInterface
 
-- (void)showAlertViewWithTitle:(NSString *)title
-                       message:(NSString *)message
-             cancelButtonTitle:(NSString *)cancelButtonTitle
-        otherButtonTitlesArray:(NSArray *)otherButtonTitlesArray
-             clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
-          didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock
+- (void)showAlertInViewController:(UIViewController *)viewController
+                        withTitle:(NSString *)title
+                          message:(NSString *)message
+                cancelButtonTitle:(NSString *)cancelButtonTitle
+           otherButtonTitlesArray:(NSArray *)otherButtonTitlesArray
+                clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
+             didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock
 {
-    [self setClickedCompletionBlock:clickedCompletionBlock];
-    [self setDidDismissCompletionBlock:didDismissCompletionBlock];
-    
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message
-                                                       delegate:self
-                                              cancelButtonTitle:cancelButtonTitle
-                                              otherButtonTitles:nil];
-    for (NSString* title in otherButtonTitlesArray) {
-        [alertView addButtonWithTitle:title];
-    }
-
-    alertView.tag = MTAlertWrapperPlainTextType;
-    [alertView show];
+    [self showAlertInViewController:viewController
+                          withTitle:title
+                            message:message
+                  cancelButtonTitle:cancelButtonTitle
+             otherButtonTitlesArray:otherButtonTitlesArray
+                           textType:MTAlertWrapperTextTypePlain
+                  clickedCompletion:clickedCompletionBlock
+               didDismissCompletion:didDismissCompletionBlock];
 }
 
-- (void)showInputTextAlertViewWithTitle:(NSString *)title
-                                message:(NSString *)message
+- (void)showInputTextAlertInViewController:(UIViewController *)viewController
+                                 withTitle:(NSString *)title
+                                   message:(NSString *)message
+                         cancelButtonTitle:(NSString *)cancelButtonTitle
+                    otherButtonTitlesArray:(NSArray *)otherButtonTitlesArray
+                         clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
+                      didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock
+{
+    [self showAlertInViewController:viewController
+                          withTitle:title
+                            message:message
+                  cancelButtonTitle:cancelButtonTitle
+             otherButtonTitlesArray:otherButtonTitlesArray
+                           textType:MTAlertWrapperTextTypeInput
+                  clickedCompletion:clickedCompletionBlock
+               didDismissCompletion:didDismissCompletionBlock];
+}
+
+- (void)showRepeatRequestAlertInViewController:(UIViewController *)viewController
+                                     withTitle:(NSString *)title
+                                       message:(NSString *)message
+                             clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
+                          didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock
+{
+    [self showAlertInViewController:viewController
+                          withTitle:title
+                            message:message
+                  cancelButtonTitle:NSLocalizedString(@"Continue", nil)
+             otherButtonTitlesArray:@[NSLocalizedString(@"Repeat", nil)]
+                           textType:MTAlertWrapperTextTypePlain
+                  clickedCompletion:clickedCompletionBlock
+               didDismissCompletion:didDismissCompletionBlock];
+}
+
+- (void)showErrorAlertInViewController:(UIViewController *)viewController
+                           withMessage:(NSString *)message
+{
+    [self showAlertInViewController:viewController
+                          withTitle:NSLocalizedString(@"Error", nil)
+                            message:message
+                  cancelButtonTitle:NSLocalizedString(@"Continue", nil)
+             otherButtonTitlesArray:nil
+                           textType:MTAlertWrapperTextTypePlain
+                  clickedCompletion:nil
+               didDismissCompletion:nil];
+}
+
+- (void)showAlertInViewController:(UIViewController *)viewController
+                        withTitle:(NSString *)title
+                          message:(NSString *)message
+{
+    [self showAlertInViewController:viewController
+                          withTitle:title
+                            message:message
+                  cancelButtonTitle:NSLocalizedString(@"Continue", nil)
+             otherButtonTitlesArray:nil
+                           textType:MTAlertWrapperTextTypePlain
+                  clickedCompletion:nil
+               didDismissCompletion:nil];
+}
+
+- (void)showActionSheetInViewController:(UIViewController *)viewController
+                              withTitle:(NSString *)title
                       cancelButtonTitle:(NSString *)cancelButtonTitle
                  otherButtonTitlesArray:(NSArray *)otherButtonTitlesArray
                       clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
@@ -55,100 +112,82 @@
     [self setClickedCompletionBlock:clickedCompletionBlock];
     [self setDidDismissCompletionBlock:didDismissCompletionBlock];
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message
-                                                       delegate:self
-                                              cancelButtonTitle:cancelButtonTitle
-                                              otherButtonTitles:nil];
-    for (NSString* title in otherButtonTitlesArray) {
-        [alertView addButtonWithTitle:title];
-    }
-    alertView.tag = MTAlertWrapperInputTextType;
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    
-    UITextField *textField = [alertView textFieldAtIndex:0];
-    [textField setAccessibilityLabel:@"Input Text Field"];
-    textField.keyboardType = UIKeyboardTypeEmailAddress;
-    
-    [alertView show];
-}
-
-- (void)showRepeatRequestAlertWithTitle:(NSString *)title
-                                message:(NSString *)message
-                      clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
-                   didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock
-{
-    [self setClickedCompletionBlock:clickedCompletionBlock];
-    [self setDidDismissCompletionBlock:didDismissCompletionBlock];
-    
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message
-                                                       delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"Continue", nil)
-                                              otherButtonTitles:NSLocalizedString(@"Repeat", nil), nil];
-    alertView.tag = MTAlertWrapperPlainTextType;
-    [alertView show];
-}
-
-- (void)showErrorAlertWithMessage:(NSString *)message
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
-                                                        message:message
-                                                       delegate:nil
-                                              cancelButtonTitle:NSLocalizedString(@"Continue", nil)
-                                              otherButtonTitles:nil];
-    [alertView show];
-}
-
-- (void)showAlertWithTitle:(NSString *)title
-                   message:(NSString *)message
-{
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                        message:message
-                                                       delegate:nil
-                                              cancelButtonTitle:NSLocalizedString(@"Continue", nil)
-                                              otherButtonTitles:nil];
-    [alertView show];
-}
-
-- (void)showActionSheetInView:(UIView *)view
-                    withTitle:(NSString *)title
-            cancelButtonTitle:(NSString *)cancelButtonTitle
-       otherButtonTitlesArray:(NSArray *)otherButtonTitlesArray
-            clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
-         didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock
-{
-    [self setClickedCompletionBlock:clickedCompletionBlock];
-    [self setDidDismissCompletionBlock:didDismissCompletionBlock];
-    
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
-                                                             delegate:self
-                                                    cancelButtonTitle:cancelButtonTitle
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles: nil];
-    
-    for (NSString *title in otherButtonTitlesArray) {
-        [actionSheet addButtonWithTitle:title];
+    if ([[UIDevice currentDevice] systemVersionIsGreaterThanOrEqualTo:@"9.0"]) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                       message:nil
+                                                                preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction * action) {
+                                                                 
+                                                                 if (self.clickedCompletionBlock) {
+                                                                     self.clickedCompletionBlock(0, action.title, nil);
+                                                                 }
+                                                                 if (self.didDismissCompletionBlock) {
+                                                                     self.didDismissCompletionBlock(0, action.title, nil);
+                                                                 }
+                                                                 
+                                                             }];
+        [alert addAction:cancelAction];
+        
+        for (NSString *otherButtonTitle in otherButtonTitlesArray) {
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:otherButtonTitle
+                                                                    style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {
+                                                                      
+                                                                      if (self.clickedCompletionBlock) {
+                                                                          self.clickedCompletionBlock(0, action.title, nil);
+                                                                      }
+                                                                      if (self.didDismissCompletionBlock) {
+                                                                          self.didDismissCompletionBlock(0, action.title, nil);
+                                                                      }
+                                                                      
+                                                                  }];
+            
+            [alert addAction:defaultAction];
+            
+        }
+        
+        [viewController presentViewController:alert
+                                     animated:YES
+                                   completion:nil];
+        
+    } else {
+        
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title
+                                                                 delegate:self
+                                                        cancelButtonTitle:cancelButtonTitle
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles: nil];
+        
+        for (NSString *title in otherButtonTitlesArray) {
+            [actionSheet addButtonWithTitle:title];
+        }
+        
+        actionSheet.destructiveButtonIndex = -1;
+        actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+        [actionSheet showInView:viewController.view];
+        
     }
     
-    actionSheet.destructiveButtonIndex = -1;
-    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-    [actionSheet showInView:view];
 }
 
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (alertView.tag == MTAlertWrapperPlainTextType) {
+    if (alertView.tag == MTAlertWrapperTextTypePlain) {
         if (self.didDismissCompletionBlock) {
-            self.didDismissCompletionBlock(buttonIndex, nil);
+            self.didDismissCompletionBlock(buttonIndex, nil, nil);
             [self setDidDismissCompletionBlock:nil];
         }
-    } else if (alertView.tag == MTAlertWrapperInputTextType) {
+    } else if (alertView.tag == MTAlertWrapperTextTypeInput) {
         if (self.didDismissCompletionBlock) {
             UITextField *textInput = [alertView textFieldAtIndex:0];
-            self.didDismissCompletionBlock(buttonIndex, textInput.text);
+            self.didDismissCompletionBlock(buttonIndex, nil, textInput.text);
             [self setDidDismissCompletionBlock:nil];
         }
     }
@@ -156,15 +195,15 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (alertView.tag == MTAlertWrapperPlainTextType) {
+    if (alertView.tag == MTAlertWrapperTextTypePlain) {
         if (self.clickedCompletionBlock) {
-            self.clickedCompletionBlock(buttonIndex, nil);
+            self.clickedCompletionBlock(buttonIndex, nil, nil);
             [self setClickedCompletionBlock:nil];
         }
-    } else if (alertView.tag == MTAlertWrapperInputTextType) {
+    } else if (alertView.tag == MTAlertWrapperTextTypeInput) {
         if (self.clickedCompletionBlock) {
             UITextField *textInput = [alertView textFieldAtIndex:0];
-            self.clickedCompletionBlock(buttonIndex, textInput.text);
+            self.clickedCompletionBlock(buttonIndex, nil, textInput.text);
             [self setClickedCompletionBlock:nil];
         }
     }
@@ -175,7 +214,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (self.didDismissCompletionBlock) {
-        self.didDismissCompletionBlock(buttonIndex, nil);
+        self.didDismissCompletionBlock(buttonIndex, nil, nil);
         [self setDidDismissCompletionBlock:nil];
     }
 }
@@ -183,8 +222,103 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (self.clickedCompletionBlock) {
-        self.clickedCompletionBlock(buttonIndex, nil);
+        self.clickedCompletionBlock(buttonIndex, nil, nil);
         [self setClickedCompletionBlock:nil];
+    }
+}
+
+#pragma mark - Helper
+
+- (void)showAlertInViewController:(UIViewController *)viewController
+                        withTitle:(NSString *)title
+                          message:(NSString *)message
+                cancelButtonTitle:(NSString *)cancelButtonTitle
+           otherButtonTitlesArray:(NSArray *)otherButtonTitlesArray
+                         textType:(NSUInteger)textType
+                clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
+             didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock
+{
+    [self setClickedCompletionBlock:clickedCompletionBlock];
+    [self setDidDismissCompletionBlock:didDismissCompletionBlock];
+    
+    if ([[UIDevice currentDevice] systemVersionIsGreaterThanOrEqualTo:@"9.0"]) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                       message:message
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle
+                                                               style:UIAlertActionStyleCancel
+                                                             handler:^(UIAlertAction * action) {
+
+                                                                 if (self.clickedCompletionBlock) {
+                                                                     self.clickedCompletionBlock(0, action.title, nil);
+                                                                 }
+                                                                 if (self.didDismissCompletionBlock) {
+                                                                     self.didDismissCompletionBlock(0, action.title, nil);
+                                                                 }
+                                                             
+                                                             }];
+        [alert addAction:cancelAction];
+        
+        __weak UIAlertController *weakAlert = alert;
+        NSNumber *hasInputText = @(textType == MTAlertWrapperTextTypeInput);
+        __weak NSNumber *weakHasInputText = hasInputText;
+        
+        for (NSString *otherButtonTitle in otherButtonTitlesArray) {
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:otherButtonTitle
+                                                                    style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {
+                                                                  
+                                                                      NSString *inputText;
+                                                                      if ([weakHasInputText boolValue]) {
+                                                                          UITextField *textField = [[weakAlert textFields] objectAtIndex:0];
+                                                                          inputText = textField.text;
+                                                                      }
+                                                                      
+                                                                      if (self.clickedCompletionBlock) {
+                                                                          self.clickedCompletionBlock(0, action.title, inputText);
+                                                                      }
+                                                                      if (self.didDismissCompletionBlock) {
+                                                                          self.didDismissCompletionBlock(0, action.title, inputText);
+                                                                      }
+                                                                      
+                                                                  }];
+            
+            [alert addAction:defaultAction];
+            
+        }
+        
+        if (textType == MTAlertWrapperTextTypeInput) {
+            [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+                [textField setAccessibilityLabel:@"Input Text Field"];
+            }];
+        }
+        
+        [viewController presentViewController:alert
+                                     animated:YES
+                                   completion:nil];
+        
+    } else {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:self
+                                              cancelButtonTitle:cancelButtonTitle
+                                              otherButtonTitles:nil];
+        for (NSString *title in otherButtonTitlesArray) {
+            [alert addButtonWithTitle:title];
+        }
+        
+        if (textType == MTAlertWrapperTextTypeInput) {
+            UITextField *textField = [alert textFieldAtIndex:0];
+            [textField setAccessibilityLabel:@"Input Text Field"];
+        }
+        
+        alert.tag = textType;
+        [alert show];
+        
     }
 }
 
