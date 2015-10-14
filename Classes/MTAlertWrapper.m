@@ -124,11 +124,13 @@
                                                                  
                                                                  if (self.clickedCompletionBlock) {
                                                                      self.clickedCompletionBlock(0, action.title, nil);
+                                                                     [self setClickedCompletionBlock:nil];
                                                                  }
                                                                  if (self.didDismissCompletionBlock) {
                                                                      self.didDismissCompletionBlock(0, action.title, nil);
+                                                                     [self setDidDismissCompletionBlock:nil];
                                                                  }
-                                                                 
+                                                                 [alert dismissViewControllerAnimated:YES completion:nil];
                                                              }];
         [alert addAction:cancelAction];
         
@@ -140,20 +142,24 @@
                                                                       
                                                                       if (self.clickedCompletionBlock) {
                                                                           self.clickedCompletionBlock(0, action.title, nil);
+                                                                          [self setClickedCompletionBlock:nil];
                                                                       }
                                                                       if (self.didDismissCompletionBlock) {
                                                                           self.didDismissCompletionBlock(0, action.title, nil);
+                                                                          [self setDidDismissCompletionBlock:nil];
                                                                       }
-                                                                      
+                                                                      [alert dismissViewControllerAnimated:YES completion:nil];
                                                                   }];
             
             [alert addAction:defaultAction];
             
         }
         
-        [viewController presentViewController:alert
-                                     animated:YES
-                                   completion:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [viewController presentViewController:alert
+                                         animated:YES
+                                       completion:nil];
+        });
         
     } else {
         
@@ -253,11 +259,13 @@
 
                                                                  if (self.clickedCompletionBlock) {
                                                                      self.clickedCompletionBlock(0, action.title, nil);
+                                                                     [self setClickedCompletionBlock:nil];
                                                                  }
                                                                  if (self.didDismissCompletionBlock) {
                                                                      self.didDismissCompletionBlock(0, action.title, nil);
+                                                                     [self setDidDismissCompletionBlock:nil];
                                                                  }
-                                                             
+                                                                 [alert dismissViewControllerAnimated:YES completion:nil];
                                                              }];
         [alert addAction:cancelAction];
         
@@ -279,11 +287,13 @@
                                                                       
                                                                       if (self.clickedCompletionBlock) {
                                                                           self.clickedCompletionBlock(0, action.title, inputText);
+                                                                          [self setClickedCompletionBlock:nil];
                                                                       }
                                                                       if (self.didDismissCompletionBlock) {
                                                                           self.didDismissCompletionBlock(0, action.title, inputText);
+                                                                          [self setDidDismissCompletionBlock:nil];
                                                                       }
-                                                                      
+                                                                      [alert dismissViewControllerAnimated:YES completion:nil];
                                                                   }];
             
             [alert addAction:defaultAction];
@@ -296,9 +306,11 @@
             }];
         }
         
-        [viewController presentViewController:alert
-                                     animated:YES
-                                   completion:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [viewController presentViewController:alert
+                                         animated:YES
+                                       completion:nil];
+        });
         
     } else {
         
