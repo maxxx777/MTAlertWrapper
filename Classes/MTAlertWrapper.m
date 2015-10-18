@@ -9,8 +9,8 @@
 
 @interface MTAlertWrapper ()
 
-@property (nonatomic, strong) MTAlertWrapperClickedCompletionBlock clickedCompletionBlock;
-@property (nonatomic, strong) MTAlertWrapperDidDismissCompletionBlock didDismissCompletionBlock;
+@property (nonatomic, copy) MTAlertWrapperClickedCompletionBlock clickedCompletionBlock;
+@property (nonatomic, copy) MTAlertWrapperDidDismissCompletionBlock didDismissCompletionBlock;
 
 @end
 
