@@ -130,7 +130,7 @@
                                                                      self.didDismissCompletionBlock(0, action.title, nil);
                                                                      [self setDidDismissCompletionBlock:nil];
                                                                  }
-                                                                 [alert dismissViewControllerAnimated:YES completion:nil];
+//                                                                 [alert dismissViewControllerAnimated:YES completion:nil];
                                                              }];
         [alert addAction:cancelAction];
         
@@ -148,7 +148,7 @@
                                                                           self.didDismissCompletionBlock(0, action.title, nil);
                                                                           [self setDidDismissCompletionBlock:nil];
                                                                       }
-                                                                      [alert dismissViewControllerAnimated:YES completion:nil];
+//                                                                      [alert dismissViewControllerAnimated:YES completion:nil];
                                                                   }];
             
             [alert addAction:defaultAction];
@@ -269,9 +269,7 @@
                                                              }];
         [alert addAction:cancelAction];
         
-        __weak UIAlertController *weakAlert = alert;
-        NSNumber *hasInputText = @(textType == MTAlertWrapperTextTypeInput);
-        __weak NSNumber *weakHasInputText = hasInputText;
+        BOOL hasInputText = textType == MTAlertWrapperTextTypeInput;
         
         for (NSString *otherButtonTitle in otherButtonTitlesArray) {
             
@@ -280,8 +278,8 @@
                                                                   handler:^(UIAlertAction * action) {
                                                                   
                                                                       NSString *inputText;
-                                                                      if ([weakHasInputText boolValue]) {
-                                                                          UITextField *textField = [[weakAlert textFields] objectAtIndex:0];
+                                                                      if (hasInputText) {
+                                                                          UITextField *textField = [[alert textFields] objectAtIndex:0];
                                                                           inputText = textField.text;
                                                                       }
                                                                       
