@@ -8,34 +8,42 @@
 
 @protocol MTAlertWrapperInterface <NSObject>
 
-- (void)showAlertInViewController:(UIViewController *)viewController
-                        withTitle:(NSString *)title
-                          message:(NSString *)message
-                cancelButtonTitle:(NSString *)cancelButtonTitle
-           otherButtonTitlesArray:(NSArray *)otherButtonTitlesArray
+- (void)showAlertInViewController:(UIViewController * _Nonnull)viewController
+                        withTitle:(NSString * _Nonnull)title
+                          message:(NSString * _Nonnull)message
+                cancelButtonTitle:(NSString * _Nonnull)cancelButtonTitle
+           otherButtonTitlesArray:(NSArray * _Nonnull)otherButtonTitlesArray
                 clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
              didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock;
-- (void)showInputTextAlertInViewController:(UIViewController *)viewController
-                                 withTitle:(NSString *)title
-                                   message:(NSString *)message
-                         cancelButtonTitle:(NSString *)cancelButtonTitle
-                    otherButtonTitlesArray:(NSArray *)otherButtonTitlesArray
+- (void)showInputTextAlertInViewController:(UIViewController * _Nonnull)viewController
+                                 withTitle:(NSString * _Nonnull)title
+                                   message:(NSString * _Nonnull)message
+                         cancelButtonTitle:(NSString * _Nonnull)cancelButtonTitle
+                    otherButtonTitlesArray:(NSArray * _Nonnull)otherButtonTitlesArray
                          clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
                       didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock;
-- (void)showErrorAlertInViewController:(UIViewController *)viewController
-                           withMessage:(NSString *)message;
-- (void)showAlertInViewController:(UIViewController *)viewController
-                        withTitle:(NSString *)title
-                          message:(NSString *)message;
-- (void)showRepeatRequestAlertInViewController:(UIViewController *)viewController
-                                     withTitle:(NSString *)title
-                                       message:(NSString *)message
+- (void)showErrorAlertInViewController:(UIViewController * _Nonnull)viewController
+                           withMessage:(NSString * _Nonnull)message;
+- (void)showAlertInViewController:(UIViewController * _Nonnull)viewController
+                        withTitle:(NSString * _Nonnull)title
+                          message:(NSString * _Nonnull)message;
+- (void)showRepeatRequestAlertInViewController:(UIViewController * _Nonnull)viewController
+                                     withTitle:(NSString * _Nonnull)title
+                                       message:(NSString * _Nonnull)message
                              clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
                           didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock;
-- (void)showActionSheetInViewController:(UIViewController *)viewController
-                              withTitle:(NSString *)title
-                      cancelButtonTitle:(NSString *)cancelButtonTitle
-                 otherButtonTitlesArray:(NSArray *)otherButtonTitlesArray
+- (void)showActionSheetInViewController:(UIViewController * _Nonnull)viewController
+                              withTitle:(NSString * _Nonnull)title
+                      cancelButtonTitle:(NSString * _Nonnull)cancelButtonTitle
+                 otherButtonTitlesArray:(NSArray * _Nonnull)otherButtonTitlesArray
+                      clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
+                   didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock;
+- (void)showActionSheetInViewController:(UIViewController * _Nonnull)viewController
+                          fromBarButton:(UIBarButtonItem * _Nullable)barButton
+                               fromRect:(CGRect)rect
+                              withTitle:(NSString * _Nonnull)title
+                      cancelButtonTitle:(NSString * _Nonnull)cancelButtonTitle
+                 otherButtonTitlesArray:(NSArray * _Nonnull)otherButtonTitlesArray
                       clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
                    didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock;
 
