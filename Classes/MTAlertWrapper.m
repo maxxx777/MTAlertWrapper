@@ -109,6 +109,25 @@
                       clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
                    didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock
 {
+    [self showActionSheetInViewController:viewController
+                            fromBarButton:nil
+                                 fromRect:CGRectZero
+                                withTitle:title
+                        cancelButtonTitle:cancelButtonTitle
+                   otherButtonTitlesArray:otherButtonTitlesArray
+                        clickedCompletion:clickedCompletionBlock
+                     didDismissCompletion:didDismissCompletionBlock];
+}
+
+- (void)showActionSheetInViewController:(UIViewController *)viewController
+                          fromBarButton:(UIBarButtonItem *)barButton
+                               fromRect:(CGRect)rect
+                              withTitle:(NSString *)title
+                      cancelButtonTitle:(NSString *)cancelButtonTitle
+                 otherButtonTitlesArray:(NSArray *)otherButtonTitlesArray
+                      clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
+                   didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock
+{
     [self setClickedCompletionBlock:clickedCompletionBlock];
     [self setDidDismissCompletionBlock:didDismissCompletionBlock];
     
@@ -156,9 +175,27 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [viewController presentViewController:alert
-                                         animated:YES
-                                       completion:nil];
+            
+            if (IS_IPAD) {
+                UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:alert];
+
+                if (barButton) {
+                    [popoverController presentPopoverFromBarButtonItem:barButton
+                                              permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                              animated:YES];
+                } else {
+                    [popoverController presentPopoverFromRect:rect
+                                                       inView:viewController.view
+                                     permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                     animated:YES];
+                }
+                
+            } else {
+                [viewController presentViewController:alert
+                                             animated:YES
+                                           completion:nil];
+            }
+            
         });
         
     } else {
