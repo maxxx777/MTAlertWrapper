@@ -13,15 +13,15 @@
                           message:(NSString * _Nonnull)message
                 cancelButtonTitle:(NSString * _Nonnull)cancelButtonTitle
            otherButtonTitlesArray:(NSArray * _Nonnull)otherButtonTitlesArray
-                clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
-             didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock;
+                clickedCompletion:(MTAlertWrapperClickedCompletionBlock _Nullable)clickedCompletionBlock
+             didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock _Nullable)didDismissCompletionBlock;
 - (void)showInputTextAlertInViewController:(UIViewController * _Nonnull)viewController
                                  withTitle:(NSString * _Nonnull)title
                                    message:(NSString * _Nonnull)message
                          cancelButtonTitle:(NSString * _Nonnull)cancelButtonTitle
                     otherButtonTitlesArray:(NSArray * _Nonnull)otherButtonTitlesArray
-                         clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
-                      didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock;
+                         clickedCompletion:(MTAlertWrapperClickedCompletionBlock _Nullable)clickedCompletionBlock
+                      didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock _Nullable)didDismissCompletionBlock;
 - (void)showErrorAlertInViewController:(UIViewController * _Nonnull)viewController
                            withMessage:(NSString * _Nonnull)message;
 - (void)showAlertInViewController:(UIViewController * _Nonnull)viewController
@@ -30,21 +30,21 @@
 - (void)showRepeatRequestAlertInViewController:(UIViewController * _Nonnull)viewController
                                      withTitle:(NSString * _Nonnull)title
                                        message:(NSString * _Nonnull)message
-                             clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
-                          didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock;
+                             clickedCompletion:(MTAlertWrapperClickedCompletionBlock _Nullable)clickedCompletionBlock
+                          didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock _Nullable)didDismissCompletionBlock;
 - (void)showActionSheetInViewController:(UIViewController * _Nonnull)viewController
                               withTitle:(NSString * _Nonnull)title
                       cancelButtonTitle:(NSString * _Nonnull)cancelButtonTitle
                  otherButtonTitlesArray:(NSArray * _Nonnull)otherButtonTitlesArray
-                      clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
-                   didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock;
+                      clickedCompletion:(MTAlertWrapperClickedCompletionBlock _Nullable)clickedCompletionBlock
+                   didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock _Nullable)didDismissCompletionBlock;
 - (void)showActionSheetInViewController:(UIViewController * _Nonnull)viewController
                           fromBarButton:(UIBarButtonItem * _Nullable)barButton
                                fromRect:(CGRect)rect
                               withTitle:(NSString * _Nonnull)title
                       cancelButtonTitle:(NSString * _Nonnull)cancelButtonTitle
                  otherButtonTitlesArray:(NSArray * _Nonnull)otherButtonTitlesArray
-                      clickedCompletion:(MTAlertWrapperClickedCompletionBlock)clickedCompletionBlock
-                   didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock)didDismissCompletionBlock;
+                      clickedCompletion:(MTAlertWrapperClickedCompletionBlock _Nullable)clickedCompletionBlock
+                   didDismissCompletion:(MTAlertWrapperDidDismissCompletionBlock _Nullable)didDismissCompletionBlock;
 
 @end
